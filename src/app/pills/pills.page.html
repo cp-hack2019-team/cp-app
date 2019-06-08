@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Мои лекарства</ion-title>
+	<ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list inset no-lines>
+		<ion-item *ngFor="let pill of pills"> <b> Лекарство: </b> {{pill.name}}, {{pill.reception}} </ion-item>
+	</ion-list>
+
+</ion-content>
