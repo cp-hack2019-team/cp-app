@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Мой приём</ion-title>
+	<ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list inset no-lines *ngIf="recipeData!=null">
+		<ion-item> <b> Название: </b> {{recipeData.name}}</ion-item>
+	</ion-list>
+	
+	<ion-row>
+		<ion-col>
+			<ion-button color="primary" expand="block" (click)="getRecipe()">
+        Загрузить рецепт
+			</ion-button>
+		</ion-col>
+	</ion-row>
+</ion-content>

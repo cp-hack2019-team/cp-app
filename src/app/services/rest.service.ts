@@ -7,7 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-const apiUrl = 'http://hack-university-server.herokuapp.com/';
+const apiUrl = 'https://cp-2019-server.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,20 @@ export class RestService {
 
   static getApiUrl() {
     return apiUrl;
+  }
+  
+  getRecipe(recipeId) {
+    return new Promise((resolve, reject) => {
+      // let headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
+      this.http.get(RestService.getApiUrl() + "getRecipe/" + recipeId)
+          .subscribe(res => {
+            //	console.log(res); // log
+            resolve(res);
+          }, (err) => {
+            console.log(err); // log
+            reject(err);
+          });
+    });
   }
 
   getEvent() {
