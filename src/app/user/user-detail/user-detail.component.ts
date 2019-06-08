@@ -9,6 +9,7 @@ import {User} from '../../interfaces/user';
 })
 export class UserDetailComponent implements OnInit {
     user: User;
+	pills = [{name: "Звёздочка"}, {name: "Аспирин"}];
 
   constructor(
       private route: ActivatedRoute,
@@ -21,5 +22,13 @@ export class UserDetailComponent implements OnInit {
                 this.user = data.user;
             });
     }
+	
+	navPills() {
+		//this.router.navigate(['/pills']);
+	}
+  
+	navWatchers() {
+		//this.router.navigate(['/watchers']);
+	}
 
 }
