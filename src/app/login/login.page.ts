@@ -18,6 +18,7 @@ export class LoginPage {
     }
 
     async doLogin() {
+		this.router.navigate(['/user']);
         /*const loading = await this.loadingController.create({
             message: 'Please wait...'
         });
