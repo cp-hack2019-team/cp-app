@@ -9,12 +9,14 @@ export class StorageService {
   constructor(private storage: Storage) { }
 
   get(key: string) {
-    this.storage.get(key).then(result => {
-      return result;
+    let result = null;
+    this.storage.get(key).then(res => {
+      result = res;
     }).catch(error => {
       console.log('StorageService: ' + error + ' for key ' + key);
-      return null;
+      result = null;
     });
+    return result;
   }
 
   set(key: string, value: string) {
