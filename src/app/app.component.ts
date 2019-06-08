@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import {MenuController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {LoginService} from './services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Login',
-      url: '/login',
+      title: 'Моя страница',
+      url: '/user',
       icon: 'home'
     },
     {
@@ -25,9 +27,24 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private loginService: LoginService,
+    private menuController: MenuController,
+    private router: Router,
   ) {
     this.initializeApp();
+    menuController.enable(loginService.isAuthorized, 'main');
+
+    // Handle menu state on login
+    loginService.$isAuthorized.subscribe(isAuthorized => {
+      console.log('isAuthorized: ' + isAuthorized);
+      menuController.enable(isAuthorized, 'main');
+    });
+
+    if (loginService.isAuthorized) {
+      this.router.navigate(['/user']);
+      menuController.enable(true, 'main');
+    }
   }
 
   initializeApp() {
@@ -35,5 +52,10 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 }
