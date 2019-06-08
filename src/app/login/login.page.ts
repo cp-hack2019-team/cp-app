@@ -35,7 +35,7 @@ export class LoginPage {
                 this.fb.api('/me?fields=name,email', permissions)
                     .then(user => {
                         user.picture = 'https://graph.facebook.com/' + userId + '/picture?type=large';
-                        // now we have the users info, let's save it in the NativeStorage
+                        // now we have the user info, let's save it in the NativeStorage
                         this.nativeStorage.setItem('facebook_user',
                             {
                                 name: user.name,

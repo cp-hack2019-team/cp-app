@@ -54,7 +54,7 @@ export class RestService {
       let body = new HttpParams();
       body = body.set('text', message.text);
       body = body.set('userId', message.userId);
-      this.http.post(RestService.getApiUrl() + 'send-msg', body, {headers: headers})
+      this.http.post(RestService.getApiUrl() + 'send-msg', body, {headers})
           .subscribe(res => {
             console.log(res); // log
             resolve(res);
