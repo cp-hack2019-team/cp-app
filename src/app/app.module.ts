@@ -11,21 +11,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {UserModule} from './user/user.module';
-import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    IonicStorageModule.forRoot({
-      name: '__mydb',
-      driverOrder: ['localstorage', 'sqlite', 'websql']
-    }),
+      BrowserModule,
+      IonicModule.forRoot(),
+      IonicStorageModule.forRoot({
+        name: '__mydb',
+        driverOrder: ['localstorage', 'sqlite', 'websql']
+      }),
       UserModule,
-    AppRoutingModule,
-	HttpClientModule
+      AppRoutingModule,
+      HttpClientModule
   ],
   providers: [
     StatusBar,
