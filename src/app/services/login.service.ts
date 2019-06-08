@@ -10,10 +10,11 @@ export class LoginService {
 
     public $isAuthorized = new Subject<boolean>();
     isAuthorized = false;
+    userId = null;
 
     constructor(private storageService: StorageService,
                 private restService: RestService) {
-        this.isAuthorized = this.isStorageAuthorized();
+        this.isStorageAuthorized().then(res => this.isAuthorized = res);
     }
 
     public login(login, password) {
@@ -26,6 +27,7 @@ export class LoginService {
                 this.isAuthorized = true;
                 this.onAuthorizedUpdate();
                 this.storageService.set('token', data.token);
+                this.userId = data.id;
                 this.storageService.set('userId', data.id);
                 resolve();
             }).catch(err => {
@@ -41,16 +43,20 @@ export class LoginService {
     }
 
     public getUserId() {
-        return this.storageService.get('userId');
+        return this.userId;
     }
+
+    // public async getUserId() {
+    //     return await this.storageService.get('userId');
+    // }
 
     private onAuthorizedUpdate() {
         this.setStorageAuthorized();
         this.$isAuthorized.next(this.isAuthorized);
     }
 
-    private isStorageAuthorized(): boolean {
-        return this.storageService.get('login') === 'true';
+    private async isStorageAuthorized(): Promise<boolean> {
+        return await this.storageService.get('login') === 'true';
     }
 
     private setStorageAuthorized() {

@@ -22,7 +22,7 @@ export class RestService {
       // let headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
       this.http.get(RestService.getApiUrl() + "getRecipe/" + recipeId)
           .subscribe(res => {
-            //	console.log(res); // log
+            // console.log(res); // log
             resolve(res);
           }, (err) => {
             console.log(err); // log
@@ -47,34 +47,41 @@ export class RestService {
     postRequest(url: string, body: any) {
         console.log(body);
         return new Promise((resolve, reject) => {
-            const headers = this.getHeaders();
-            this.http.post(RestService.getApiUrl() + url, body, headers)
-                .subscribe(res => {
-                    console.log('Request result: ' + res); // log
-                    resolve(res);
-                }, (err) => {
-                    console.log('Request error: ' + err); // log
-                    reject(err);
-                });
+            let headers = null;
+            this.getHeaders().then(result => {
+                headers = result
+                this.http.post(RestService.getApiUrl() + url, body, headers)
+                    .subscribe(res => {
+                        console.log('Request result: ' + res); // log
+                        resolve(res);
+                    }, (err) => {
+                        console.log('Request error: ' + err); // log
+                        reject(err);
+                    });
+            });
         });
     }
 
     getRequest(url: string) {
         return new Promise((resolve, reject) => {
-            const headers = this.getHeaders();
-            this.http.get(RestService.getApiUrl() + url, headers)
-                .subscribe(res => {
-                    console.log('Request result: ' + res); // log
-                    resolve(res);
-                }, (err) => {
-                    console.log('Request error: ' + err); // log
-                    reject(err);
-                });
+            let headers = null;
+            this.getHeaders().then(result => {
+                headers = result
+                this.http.get(RestService.getApiUrl() + url, headers)
+                    .subscribe(res => {
+                        console.log('Request result: ' + res); // log
+                        resolve(res);
+                    }, (err) => {
+                        console.log('Request error: ' + err); // log
+                        reject(err);
+                    });
+            });
         });
     }
 
-    private getHeaders() {
-        const token = this.storageService.get('token');
+     private async getHeaders() {
+        const token = await this.storageService.get('token');
+        console.log(token)
         const headers = {
             headers: {
                 'content-type': 'application/json'
