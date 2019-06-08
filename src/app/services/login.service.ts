@@ -15,7 +15,14 @@ export class LoginService {
 
     constructor(private storageService: StorageService,
                 private restService: RestService) {
-        this.isStorageAuthorized().then(res => this.isAuthorized = res);
+        console.log('Here constructor' + this.isAuthorized);
+        this.isStorageAuthorized().then(res => {
+            this.isAuthorized = res;
+            this.storageService.get('userId').then(storedUserId => {
+                this.userId = storedUserId;
+                this.$isAuthorized.next(this.isAuthorized);
+            });
+        });
     }
 
     public login(login, password) {
@@ -26,9 +33,9 @@ export class LoginService {
             };
             this.restService.postRequest('auth/signin', body).then((data: {token: string, id: string}) => {
                 this.isAuthorized = true;
-                this.onAuthorizedUpdate();
-                this.token = data.token;
+                this.$isAuthorized.next(this.isAuthorized);
                 this.storageService.set('token', data.token);
+                this.token = data.token;
                 this.userId = data.id;
                 this.storageService.set('userId', data.id);
                 resolve();
@@ -41,7 +48,9 @@ export class LoginService {
 
     public logout() {
         this.isAuthorized = false;
-        this.onAuthorizedUpdate();
+        this.storageService.remove('token');
+        this.storageService.remove('userId');
+        this.$isAuthorized.next(this.isAuthorized);
     }
 
     public getUserId() {
@@ -52,21 +61,8 @@ export class LoginService {
         return this.token;
     }
 
-    // public async getUserId() {
-    //     return await this.storageService.get('userId');
-    // }
-
-    private onAuthorizedUpdate() {
-        this.setStorageAuthorized();
-        this.$isAuthorized.next(this.isAuthorized);
-    }
-
     private async isStorageAuthorized(): Promise<boolean> {
-        return await this.storageService.get('login') === 'true';
-    }
-
-    private setStorageAuthorized() {
-        this.storageService.set('login', this.isAuthorized ? 'true' : 'false');
+        return await this.storageService.get('token') != null && this.storageService.get('userId') != null;
     }
 
 }

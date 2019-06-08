@@ -1,4 +1,4 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {MenuController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -33,16 +33,21 @@ export class AppComponent {
     private router: Router,
   ) {
     this.initializeApp();
-    // menuController.enable(loginService.isAuthorized, 'main');
+    console.log('App');
+    menuController.enable(loginService.isAuthorized, 'main');
 
     // Handle menu state on login
     loginService.$isAuthorized.subscribe(isAuthorized => {
-        console.log('isAuthorized: ' + isAuthorized);
-        menuController.enable(isAuthorized, 'main');
-        // if (isAuthorized) {
-            // this.router.navigate(['/users/' + this.loginService.getUserId()]);
-        // }
+      console.log('isAuthorized: ' + isAuthorized + ' userId: ' + this.loginService.getUserId());
+      menuController.enable(isAuthorized, 'main');
+
+      if (this.loginService.isAuthorized && this.loginService.getUserId() != null) {
+        console.log('User already authorized');
+        this.router.navigate(['/users/' + this.loginService.getUserId()]);
+        this.menuController.enable(true, 'main');
+      }
     });
+
   }
 
   initializeApp() {
