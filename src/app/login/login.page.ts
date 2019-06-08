@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {AlertController, LoadingController, Platform} from '@ionic/angular';
+import {Platform} from '@ionic/angular';
+import {LoginService} from '../services/login.service';
 
 @Component({
     selector: 'app-login',
@@ -10,57 +11,15 @@ import {AlertController, LoadingController, Platform} from '@ionic/angular';
 export class LoginPage {
 
     constructor(
-        public loadingController: LoadingController,
         private router: Router,
         private platform: Platform,
-        public alertController: AlertController
+        private loginService: LoginService,
     ) {
     }
 
     async doLogin() {
-        /*const loading = await this.loadingController.create({
-            message: 'Please wait...'
-        });
-        this.presentLoading(loading);
-
-        // the permissions your facebook app needs from the user
-        const permissions = ['public_profile', 'email'];
-
-        this.fb.login(permissions)
-            .then(response => {
-                const userId = response.authResponse.userID;
-                // Getting name and email properties
-                // Learn more about permissions in https://developers.facebook.com/docs/facebook-login/permissions
-
-                this.fb.api('/me?fields=name,email', permissions)
-                    .then(user => {
-                        user.picture = 'https://graph.facebook.com/' + userId + '/picture?type=large';
-                        // now we have the user info, let's save it in the NativeStorage
-                        this.nativeStorage.setItem('facebook_user',
-                            {
-                                name: user.name,
-                                email: user.email,
-                                picture: user.picture
-                            })
-                            .then(() => {
-                                this.router.navigate(['/user']);
-                                loading.dismiss();
-                            }, error => {
-                                console.log(error);
-                                loading.dismiss();
-                            });
-                    });
-            }, error => {
-                console.log(error);
-                if (!this.platform.is('cordova')) {
-                    this.presentAlert();
-                }
-                loading.dismiss();
-            });*/
-    }
-
-    async presentLoading(loading) {
-        return await loading.present();
+        this.loginService.login();
+        this.router.navigate(['/user']);
     }
 
 }

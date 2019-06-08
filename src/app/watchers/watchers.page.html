@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Мои наблюдающие</ion-title>
+	<ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list inset no-lines>
+		<ion-item *ngFor="let watcher of watchers"> <b> Наблюдающий: </b> {{watcher.name}} </ion-item>
+	</ion-list>
+
+</ion-content>
