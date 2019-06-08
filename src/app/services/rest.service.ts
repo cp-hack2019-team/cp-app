@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Storage} from '@ionic/storage';
-
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {StorageService} from './storage.service';
 
 const apiUrl = 'https://cp-2019-server.herokuapp.com/';
 
@@ -11,7 +10,7 @@ const apiUrl = 'https://cp-2019-server.herokuapp.com/';
 export class RestService {
 
     constructor(public http: HttpClient,
-                private localStorage: Storage) {
+                protected storageService: StorageService) {
     }
 
     static getApiUrl() {
@@ -75,7 +74,7 @@ export class RestService {
     }
 
     private getHeaders() {
-        const token = localStorage.getItem('token');
+        const token = this.storageService.get('token');
         const headers = {
             headers: {
                 'content-type': 'application/json'

@@ -4,6 +4,7 @@ import {User} from '../interfaces/user';
 import {RestService} from '../services/rest.service';
 import {Patient} from '../interfaces/patient';
 import {Doctor} from '../interfaces/doctor';
+import {StorageService} from '../services/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,11 @@ import {Doctor} from '../interfaces/doctor';
 export class UserService extends RestService {
     private baseUrl = 'users';
 
-    constructor(public http: HttpClient) {
-        super(http);
+    constructor(
+        public http: HttpClient,
+        protected storageService: StorageService
+    ) {
+        super(http, storageService);
     }
 
     getUsers(): Promise<User[]> {

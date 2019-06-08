@@ -8,7 +8,7 @@ export class StorageService {
 
   constructor(private storage: Storage) { }
 
-  get(key: string) {
+  get(key: string): string {
     let result = null;
     this.storage.get(key).then(res => {
       result = res;
