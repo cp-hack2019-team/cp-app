@@ -37,9 +37,9 @@ export class RestService {
   getEvent() {
     return new Promise((resolve, reject) => {
       // let headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
-      this.http.get(RestService.getApiUrl() + "concert-info")
+      this.http.get(RestService.getApiUrl() + 'concert-info')
           .subscribe(res => {
-            //	console.log(res); // log
+            // console.log(res); // log
             resolve(res);
           }, (err) => {
             console.log(err); // log
@@ -63,12 +63,12 @@ export class RestService {
 
   sendMsg(message) {
     return new Promise((resolve, reject) => {
-      let headers = new HttpHeaders();
+      const headers = new HttpHeaders();
       headers.append('content-type', 'application/json');
       let body = new HttpParams();
       body = body.set('text', message.text);
       body = body.set('userId', message.userId);
-      this.http.post(RestService.getApiUrl() + 'send-msg', body, {headers: headers})
+      this.http.post(RestService.getApiUrl() + 'send-msg', body, {headers})
           .subscribe(res => {
             console.log(res); // log
             resolve(res);
@@ -84,7 +84,7 @@ export class RestService {
       // let headers = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem('token'));
       this.http.get(url)
           .subscribe(res => {
-            //	console.log(res); // log
+            // console.log(res); // log
             resolve(res);
           }, (err) => {
             console.log(err); // log
