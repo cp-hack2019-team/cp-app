@@ -1,9 +1,12 @@
 <ion-content class="login-content" padding>
   <ion-row>
     <ion-col>
-      <h1 class="logo">LOGO</h1>
-      <p class="description">This login page. {{loginService.isAuthorized}}</p>
-      <p class="description">Courtesy of <a href="https://ionicthemes.com" target="_blank">IonicThemes</a> Team ;)</p>
+      <h1 class="logo">Login</h1>
+      <ion-input placeholder="Login"
+                 [value]="login" (input)="login = $event.target.value"></ion-input>
+      <ion-input placeholder="Password" inputmode="password"
+                 [value]="password" (input)="password = $event.target.value"></ion-input>
+      <h2 *ngIf="isTriedLogin && !isSuccessLogin">Error: {{loginError}}</h2>
     </ion-col>
   </ion-row>
   <ion-row>

@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import {Router} from '@angular/router';
-import {Platform} from '@ionic/angular';
 import {LoginService} from '../services/login.service';
+import {error} from 'selenium-webdriver';
 
 @Component({
     selector: 'app-login',
@@ -12,14 +12,28 @@ export class LoginPage {
 
     constructor(
         private router: Router,
-        private platform: Platform,
-        private loginService: LoginService,
+        public loginService: LoginService,
     ) {
     }
 
+    login: string;
+    password: string;
+
+    isTriedLogin = false;
+    isSuccessLogin = false;
+    loginError = '';
+
     async doLogin() {
-        this.loginService.login();
-        this.router.navigate(['/user']);
+        console.log('Login: ' + this.login + ', Password: ' + this.password);
+
+        this.isTriedLogin = true;
+        this.loginService.login(this.login, this.password).then(success => {
+            this.isSuccessLogin = true;
+            this.router.navigate(['/user']);
+        }).catch(error => {
+            this.isSuccessLogin = false;
+            this.loginError = error.message;
+        });
     }
 
 }
