@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Мой приём</ion-title>
+    <ion-title>Добавление лекарства</ion-title>
 	<ion-buttons slot="end">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,15 +8,34 @@
 </ion-header>
 
 <ion-content>
-	<ion-list inset no-lines *ngIf="recipeData!=null">
-		<ion-item> <b> Название: </b> {{recipeData.name}}</ion-item>
+	<ion-list>
+		<ion-item>
+			<ion-label position="stacked">Название</ion-label>
+			<ion-input type="text" name="medicine" disabled>{{recipeData?.name || 'N/A'}}</ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="stacked">Начало приёма</ion-label>
+			<ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="recipeData.startDate" name="startDate" placeholder="Дата"></ion-datetime>
+		</ion-item>
+		<ion-item>
+			<ion-label position="stacked">Длина курса (дней)</ion-label>
+			<ion-input type="number" [(ngModel)]="recipeData.length" name="length"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="stacked">Общее количество ({{recipeData.type}})</ion-label>
+			<ion-input type="number" [(ngModel)]="recipeData.amount" name="amount"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="stacked">Количество в день</ion-label>
+			<ion-input type="number" [(ngModel)]="recipeData.frequency" name="frequency" (ionInput)="changeFr($event.target.value)"></ion-input>
+		</ion-item>
+		<ion-item *ngFor="let x of times; let i = index;">
+			<ion-label stacked>Время приёма {{i+1}}</ion-label>
+			<ion-datetime displayFormat="HH:mm" [(ngModel)]="x" name="times" placeholder="Время" text-center></ion-datetime>
+		</ion-item>
 	</ion-list>
-	
-	<ion-row>
-		<ion-col>
-			<ion-button color="primary" expand="block" (click)="getRecipe()">
-        Загрузить рецепт
-			</ion-button>
-		</ion-col>
-	</ion-row>
+	<ion-button color="primary" expand="block" (click)="createRecipe()">
+        Добавить
+	</ion-button>
+
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import { RestService } from '../services/rest.service';
 
 @Component({
@@ -9,21 +9,40 @@ import { RestService } from '../services/rest.service';
 })
 export class RecipePage implements OnInit {
 	
-	recipeData: any;
+	times : any;
+	recipeData = {name : 'Фуфломицин', type : 'таблетки', description : 'Длинное хорошее лекарство', startDate : '', length : '', amount : '', frequency : '', to : ''};
+	sub : any;
+	data : any;
+	medicineId : any;
 
-  constructor(private router: Router,
-			public rest: RestService) { }
+	constructor(private route: ActivatedRoute,
+			public rest: RestService) { 
+	}
 
-  ngOnInit() {
-  }
-    
-  getRecipe(recipeId) {
-		this.rest.getEvent().then((res) => {
-			this.recipeData = res;
-			console.log(this.recipeData);
-		}, (err) => {
-			console.log(err);
+	ngOnInit() {
+		this.sub = this.route.queryParams.subscribe(params => {
+			this.medicineId = params['medicineId']; 
 		});
-  }
+		console.log(this.medicineId);
+		this.getMedicine(this.medicineId);
+	}
+  
+	createRecipe() {
+		console.log(this.times);
+	}
+	
+	changeFr(frequency) {
+		this.times = new Array(+frequency);
+	}
+    
+	getMedicine(medicineId) {
+		//this.rest.getMedicine(medicineId).then((res) => {
+		//	this.data = res;
+		//	console.log(this.data);
+		//}, (err) => {
+		//	console.log(err);
+		//});
+	}
 
 }
+
