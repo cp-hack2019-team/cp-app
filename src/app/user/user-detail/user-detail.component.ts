@@ -9,12 +9,12 @@ import {User} from '../../interfaces/user';
 })
 export class UserDetailComponent implements OnInit {
     user: User;
-    pills = [{name: 'alalala'}, {name: 'lalal'}];
+	pills = [{name: "Звёздочка"}, {name: "Аспирин"}];
 
-      constructor(
-          private route: ActivatedRoute,
-          private router: Router,
-      ) { }
+  constructor(
+      private route: ActivatedRoute,
+      private router: Router,
+  ) { }
 
     ngOnInit() {
         this.route.data
@@ -23,12 +23,12 @@ export class UserDetailComponent implements OnInit {
             });
     }
 
-    navPills() {
-        this.router.navigate(['/pills']);
-    }
+	navPills() {
+		//this.router.navigate(['/pills']);
+	}
 
-    navWatchers() {
-        this.router.navigate(['/watchers']);
-    }
+	navWatchers() {
+		//this.router.navigate(['/watchers']);
+	}
 
 }

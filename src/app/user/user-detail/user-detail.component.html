@@ -1,30 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Личный кабинет</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-list inset no-lines>
-    <ion-item *ngFor="let pill of pills"> <b> Name: </b> {{pill.name}} </ion-item>
+	<ion-list inset no-lines>
+		<ion-item *ngFor="let pill of pills"> <b> Name: </b> {{pill.name}} </ion-item>
 
-  </ion-list>
+	</ion-list>
 
-  <ion-row>
-    <ion-col>
-      <ion-button color="primary" expand="block" (click)="navPills()">
+	<ion-row>
+		<ion-col>
+			<ion-button color="primary" expand="block" (click)="navPills()">
         Мой курс лечения
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-button class="log-in-button" color="primary" expand="block" (click)="navWatchers()">
+			</ion-button>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col>
+			<ion-button class="log-in-button" color="primary" expand="block" (click)="navWatchers()">
         Мои наблюдающие
-      </ion-button>
-    </ion-col>
-  </ion-row>
+			</ion-button>
+		</ion-col>
+	</ion-row>
 </ion-content>
