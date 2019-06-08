@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Patient} from '../../_interfaces/patient';
+import {Patient} from '../../interfaces/patient';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({

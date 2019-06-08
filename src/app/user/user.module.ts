@@ -11,7 +11,6 @@ import {DoctorModule} from '../doctor/doctor.module';
     declarations: [
         UserListComponent,
         UserDetailComponent,
-
     ],
     imports: [
         CommonModule,

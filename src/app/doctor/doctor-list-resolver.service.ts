@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {UserService} from '../user/user.service';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
-import {Patient} from '../_interfaces/patient';
+import {Patient} from '../interfaces/patient';
 import {Observable, of} from 'rxjs';
-import {Doctor} from '../_interfaces/doctor';
+import {Doctor} from '../interfaces/doctor';
 
 @Injectable({
   providedIn: 'root'

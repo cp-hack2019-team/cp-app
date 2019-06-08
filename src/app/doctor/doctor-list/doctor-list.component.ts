@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Doctor} from '../../_interfaces/doctor';
+import {Doctor} from '../../interfaces/doctor';
 
 @Component({
   selector: 'app-doctor-list',

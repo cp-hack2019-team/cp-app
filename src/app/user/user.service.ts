@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../_interfaces/user';
-import {RestService} from '../_services/rest.service';
-import {Patient} from '../_interfaces/patient';
-import {Doctor} from '../_interfaces/doctor';
+import {User} from '../interfaces/user';
+import {RestService} from '../services/rest.service';
+import {Patient} from '../interfaces/patient';
+import {Doctor} from '../interfaces/doctor';
 
 @Injectable({
   providedIn: 'root'
