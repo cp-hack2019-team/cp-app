@@ -42,7 +42,7 @@ export class AppComponent {
     });
 
     if (loginService.isAuthorized) {
-      this.router.navigate(['/user']);
+      this.router.navigate(['/users/' + loginService.getUserId()]);
       menuController.enable(true, 'main');
     }
   }

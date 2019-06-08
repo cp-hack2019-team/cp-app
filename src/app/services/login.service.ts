@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {Storage} from '@ionic/storage';
+import {Subject} from 'rxjs';
 import {RestService} from './rest.service';
+import {StorageService} from './storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +11,7 @@ export class LoginService {
     public $isAuthorized = new Subject<boolean>();
     isAuthorized = false;
 
-    constructor(private localStorage: Storage,
+    constructor(private storageService: StorageService,
                 private restService: RestService) {
         this.isAuthorized = this.isStorageAuthorized();
     }
@@ -25,7 +25,8 @@ export class LoginService {
             this.restService.postRequest('auth/signin', body).then((data: {token: string}) => {
                 this.isAuthorized = true;
                 this.onAuthorizedUpdate();
-                localStorage.setItem('token', data.token);
+                this.storageService.set('token', data.token);
+                this.storageService.set('userId', data.id);
                 resolve();
             }).catch(err => {
                 console.error(err);
@@ -39,17 +40,21 @@ export class LoginService {
         this.onAuthorizedUpdate();
     }
 
+    public getUserId() {
+        return this.storageService.get('userId');
+    }
+
     private onAuthorizedUpdate() {
         this.setStorageAuthorized();
         this.$isAuthorized.next(this.isAuthorized);
     }
 
     private isStorageAuthorized(): boolean {
-        return localStorage.getItem('login') === 'true';
+        return this.storageService.get('login') === 'true';
     }
 
     private setStorageAuthorized() {
-        localStorage.setItem('login', this.isAuthorized ? 'true' : 'false');
+        this.storageService.set('login', this.isAuthorized ? 'true' : 'false');
     }
 
 }
