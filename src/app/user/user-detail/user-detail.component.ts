@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {User} from '../../interfaces/user';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,6 +15,7 @@ export class UserDetailComponent implements OnInit {
   constructor(
       private route: ActivatedRoute,
       private router: Router,
+      private loginService: LoginService,
   ) { }
 
     ngOnInit() {
@@ -25,7 +27,8 @@ export class UserDetailComponent implements OnInit {
     }
 
 	navPills() {
-		//this.router.navigate(['/pills']);
+		// this.router.navigate([`/users/${this.loginService.getUserId()}/pills`]);
+		this.router.navigate([`/pills`]);
 	}
 
 	navWatchers() {

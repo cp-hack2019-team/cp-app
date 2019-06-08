@@ -9,7 +9,7 @@
 
 <ion-content>
 	<ion-list inset no-lines>
-		<ion-item *ngFor="let pill of pills"> <b> Лекарство: </b> {{pill.name}}, {{pill.reception}} </ion-item>
+		<ion-item *ngFor="let pill of pills" (click)="toRecipe(pill)"> <b> Лекарство: </b> {{pill.id}} </ion-item>
 	</ion-list>
 	
 	<ion-row>

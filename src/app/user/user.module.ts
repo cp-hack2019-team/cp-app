@@ -6,18 +6,20 @@ import {UserDetailComponent} from './user-detail/user-detail.component';
 import {IonicModule} from '@ionic/angular';
 import {PatientModule} from '../patient/patient.module';
 import {DoctorModule} from '../doctor/doctor.module';
+import {PillsPageModule} from '../pills/pills.module';
 
 @NgModule({
     declarations: [
         UserListComponent,
-        UserDetailComponent,
+        UserDetailComponent
     ],
     imports: [
         CommonModule,
         IonicModule,
         UserRoutingModule,
         PatientModule,
-        DoctorModule
+        DoctorModule,
+        // PillsPageModule
     ]
 })
 export class UserModule { }

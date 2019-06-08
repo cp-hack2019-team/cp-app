@@ -5,6 +5,7 @@ import {RestService} from '../services/rest.service';
 import {Patient} from '../interfaces/patient';
 import {Doctor} from '../interfaces/doctor';
 import {StorageService} from '../services/storage.service';
+import {ReceiptListElement} from '../interfaces/receipt/receipt-list-element';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,12 @@ export class UserService extends RestService {
     getUserDoctors(id: number | string): Promise<Doctor[]> {
         return this.getRequest(`${this.baseUrl}/${id}/doctors`).then((res: Doctor[]) => {
             console.log(res); // log
+            return res;
+        });
+    }
+
+    getUserReceiptList(id: number | string): Promise<ReceiptListElement[]> {
+        return this.getRequest(`${this.baseUrl}/${id}/medicines`).then( (res: ReceiptListElement[]) => {
             return res;
         });
     }
