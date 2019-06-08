@@ -13,7 +13,7 @@ export class UserDetailResolverService implements Resolve<void | User> {
     constructor(private userService: UserService, private router: Router) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<void | User> {
-        const id = route.paramMap.get('id');
+        const id = route.paramMap.get('uid');
 
         return this.userService.getUser(id)
             .then(res => {

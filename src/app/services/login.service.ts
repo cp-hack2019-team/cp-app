@@ -11,6 +11,7 @@ export class LoginService {
     public $isAuthorized = new Subject<boolean>();
     isAuthorized = false;
     userId = null;
+    token = null;
 
     constructor(private storageService: StorageService,
                 private restService: RestService) {
@@ -26,6 +27,7 @@ export class LoginService {
             this.restService.postRequest('auth/signin', body).then((data: {token: string, id: string}) => {
                 this.isAuthorized = true;
                 this.onAuthorizedUpdate();
+                this.token = data.token;
                 this.storageService.set('token', data.token);
                 this.userId = data.id;
                 this.storageService.set('userId', data.id);
@@ -44,6 +46,10 @@ export class LoginService {
 
     public getUserId() {
         return this.userId;
+    }
+
+    public getToken() {
+        return this.token;
     }
 
     // public async getUserId() {

@@ -33,18 +33,16 @@ export class AppComponent {
     private router: Router,
   ) {
     this.initializeApp();
-    menuController.enable(loginService.isAuthorized, 'main');
+    // menuController.enable(loginService.isAuthorized, 'main');
 
     // Handle menu state on login
     loginService.$isAuthorized.subscribe(isAuthorized => {
-      console.log('isAuthorized: ' + isAuthorized);
-      menuController.enable(isAuthorized, 'main');
+        console.log('isAuthorized: ' + isAuthorized);
+        menuController.enable(isAuthorized, 'main');
+        if (isAuthorized) {
+            this.router.navigate(['/users']);
+        }
     });
-
-    if (loginService.isAuthorized) {
-      this.router.navigate(['/users']);
-      menuController.enable(true, 'main');
-    }
   }
 
   initializeApp() {
