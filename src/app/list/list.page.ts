@@ -1,39 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {RestService} from '../_services/rest.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
   styleUrls: ['list.page.scss']
 })
-export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
-  }
 
-  ngOnInit() {
-  }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+export class ListPage<ListItemType> {
+    url: string;
+    items: Array<ListItemType>;
+
+    constructor(
+        public restService: RestService,
+        url: string
+    ) {
+        this.url = url;
+    }
+
+    getItems(): Promise<Array<ListItemType>> {
+        return this.restService.getRequest(this.url).then((res: Array<ListItemType>) => {
+           return res;
+        });
+    }
 }
