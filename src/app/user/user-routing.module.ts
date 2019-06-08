@@ -12,8 +12,9 @@ const userRoutes: Routes = [
     {
         path: 'users',
         component: UserListComponent,
-        children: [{
-                path: ':uid',
+    },
+    {
+                path: 'users/:id',
                 component: UserDetailComponent,
                 // canDeactivate: [CanDeactivateGuard],
                 resolve: {
@@ -35,7 +36,6 @@ const userRoutes: Routes = [
                         }
                     }
                 ]
-        }]
     }
 ];
 

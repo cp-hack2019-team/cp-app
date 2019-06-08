@@ -81,7 +81,6 @@ export class RestService {
 
      private async getHeaders() {
         const token = await this.storageService.get('token');
-        console.log(token)
         const headers = {
             headers: {
                 'content-type': 'application/json'
@@ -90,7 +89,6 @@ export class RestService {
         if (token != null) {
             headers.headers['Authorization'] = 'Bearer ' + token;
         }
-        console.log(headers);
         return headers;
     }
 }

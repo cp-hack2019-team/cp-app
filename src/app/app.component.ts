@@ -18,8 +18,8 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
+      title: 'Users',
+      url: '/users',
       icon: 'list'
     }
   ];
@@ -39,9 +39,9 @@ export class AppComponent {
     loginService.$isAuthorized.subscribe(isAuthorized => {
         console.log('isAuthorized: ' + isAuthorized);
         menuController.enable(isAuthorized, 'main');
-        if (isAuthorized) {
-            this.router.navigate(['/users']);
-        }
+        // if (isAuthorized) {
+            // this.router.navigate(['/users/' + this.loginService.getUserId()]);
+        // }
     });
   }
 
