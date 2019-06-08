@@ -25,7 +25,7 @@ export class LoginPage {
 
         this.loginService.login(this.login, this.password).then(success => {
             console.log('Success login');
-            this.router.navigate(['/user']);
+            this.router.navigate(['/users/' + this.loginService.getUserId()]);
         }).catch(error => {
             console.log('Error login');
             this.toastService.presentToast(error.error.message);

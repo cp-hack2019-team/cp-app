@@ -15,7 +15,7 @@ export class PillsPage implements OnInit {
   }
   
   toUser() {
-	  this.router.navigate(['/user']);
+	  this.router.navigate(['/users/']);
   }
   
   toRecipe() {
