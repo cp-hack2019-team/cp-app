@@ -3,10 +3,6 @@ import {Storage} from '@ionic/storage';
 
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
-const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
-
 const apiUrl = 'https://cp-2019-server.herokuapp.com/';
 
 @Injectable({
@@ -49,20 +45,16 @@ export class RestService {
         });
     }
 
-    postRequest(url: string, body: HttpParams) {
+    postRequest(url: string, body: any) {
+        console.log(body);
         return new Promise((resolve, reject) => {
-            const headers = new HttpHeaders();
-            headers.append('content-type', 'application/json');
-            const token = localStorage.getItem('token');
-            if (token != null) {
-                headers.append('Authorization', 'Bearer ' + token);
-            }
-            this.http.post(RestService.getApiUrl() + url, body, {headers: headers})
+            const headers = this.getHeaders();
+            this.http.post(RestService.getApiUrl() + url, body, headers)
                 .subscribe(res => {
-                    console.log(res); // log
+                    console.log('Request result: ' + res); // log
                     resolve(res);
                 }, (err) => {
-                    console.log(err); // log
+                    console.log('Request error: ' + err); // log
                     reject(err);
                 });
         });
@@ -70,18 +62,29 @@ export class RestService {
 
     getRequest(url: string) {
         return new Promise((resolve, reject) => {
-            const token = localStorage.getItem('token');
-            const headers = new HttpHeaders();
-            if (token != null) {
-                 headers.append('Authorization', 'Bearer ' + token);
-            }
-            this.http.get(RestService.getApiUrl() + url, {headers: headers})
+            const headers = this.getHeaders();
+            this.http.get(RestService.getApiUrl() + url, headers)
                 .subscribe(res => {
+                    console.log('Request result: ' + res); // log
                     resolve(res);
                 }, (err) => {
-                    console.log(err); // log
+                    console.log('Request error: ' + err); // log
                     reject(err);
                 });
         });
+    }
+
+    private getHeaders() {
+        const token = localStorage.getItem('token');
+        const headers = {
+            headers: {
+                'content-type': 'application/json'
+            }
+        };
+        if (token != null) {
+            headers.headers['Authorization'] = 'Bearer ' + token;
+        }
+        console.log(headers);
+        return headers;
     }
 }

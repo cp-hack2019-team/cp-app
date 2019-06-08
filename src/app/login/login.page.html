@@ -4,9 +4,8 @@
       <h1 class="logo">Login</h1>
       <ion-input placeholder="Login"
                  [value]="login" (input)="login = $event.target.value"></ion-input>
-      <ion-input placeholder="Password" inputmode="password"
+      <ion-input placeholder="Password" type="password" inputmode="password"
                  [value]="password" (input)="password = $event.target.value"></ion-input>
-      <h2 *ngIf="isTriedLogin && !isSuccessLogin">Error: {{loginError}}</h2>
     </ion-col>
   </ion-row>
   <ion-row>

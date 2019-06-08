@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Storage} from '@ionic/storage';
 import {RestService} from './rest.service';
-import {HttpParams} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -19,13 +18,14 @@ export class LoginService {
 
     public login(login, password) {
         return new Promise((resolve, reject) => {
-            const body = new HttpParams();
-            body.set('login', login);
-            body.set('password', password);
-            this.restService.postRequest('/auth/signin', body).then((data: {token: string}) => {
+            const body = {
+                username: login,
+                password: password
+            };
+            this.restService.postRequest('auth/signin', body).then((data: {token: string}) => {
                 this.isAuthorized = true;
                 this.onAuthorizedUpdate();
-                localStorage.seetItem('token', data.token);
+                localStorage.setItem('token', data.token);
                 resolve();
             }).catch(err => {
                 console.error(err);

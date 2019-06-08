@@ -1,7 +1,7 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from '../services/login.service';
-import {error} from 'selenium-webdriver';
+import {ToastService} from '../services/toast.service';
 
 @Component({
     selector: 'app-login',
@@ -12,6 +12,7 @@ export class LoginPage {
 
     constructor(
         private router: Router,
+        private toastService: ToastService,
         public loginService: LoginService,
     ) {
     }
@@ -19,20 +20,15 @@ export class LoginPage {
     login: string;
     password: string;
 
-    isTriedLogin = false;
-    isSuccessLogin = false;
-    loginError = '';
-
     async doLogin() {
         console.log('Login: ' + this.login + ', Password: ' + this.password);
 
-        this.isTriedLogin = true;
         this.loginService.login(this.login, this.password).then(success => {
-            this.isSuccessLogin = true;
+            console.log('Success login');
             this.router.navigate(['/user']);
         }).catch(error => {
-            this.isSuccessLogin = false;
-            this.loginError = error.message;
+            console.log('Error login');
+            this.toastService.presentToast(error.error.message);
         });
     }
 
