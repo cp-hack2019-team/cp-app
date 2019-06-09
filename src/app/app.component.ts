@@ -63,7 +63,15 @@ export class AppComponent {
   }
 
   dashboardPage() {
-      this.router.navigate([this.baseUrl + this.loginService.getUserId() + '/dashboard']);
+    // TODO: Uncomment when will fix the routing
+    // this.router.navigate([this.baseUrl + this.loginService.getUserId() + '/dashboard']);
+    this.router.navigate(['/dashboard']);
+  }
+
+  pillsPage() {
+    // TODO: Uncomment when will fix the routing
+    // this.router.navigate([this.baseUrl + this.loginService.getUserId() + '/pills']);
+    this.router.navigate(['/pills']);
   }
 
   watchersPage() {
