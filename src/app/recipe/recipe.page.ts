@@ -53,7 +53,6 @@ export class RecipePage implements OnInit {
 	
 	changeFr(frequency) {
 		this.times = new Array(+frequency);
-		console.log(this.times);
 	}
 
 }
