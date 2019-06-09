@@ -12,18 +12,8 @@ import {StorageService} from './services/storage.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Моя страница',
-      url: '/user',
-      icon: 'home'
-    },
-    {
-      title: 'Users',
-      url: '/users',
-      icon: 'list'
-    }
-  ];
+
+  private baseUrl = '/users/';
 
   constructor(
     private platform: Platform,
@@ -63,6 +53,22 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  mainPage() {
+    this.router.navigate([this.baseUrl + this.loginService.getUserId()]);
+  }
+
+  dashboardPage() {
+      this.router.navigate([this.baseUrl + this.loginService.getUserId() + '/dashboard']);
+  }
+
+  watchersPage() {
+    this.router.navigate([this.baseUrl + this.loginService.getUserId() + '/doctors']);
+  }
+
+  watchingPage() {
+    this.router.navigate([this.baseUrl + this.loginService.getUserId() + '/patients']);
   }
 
   logout() {
