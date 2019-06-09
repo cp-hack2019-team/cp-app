@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Приём</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Название</ion-label>
+      <ion-input type="text" name="medicine" disabled>{{receipt?.medicineName || 'N/A'}}</ion-input>
+    </ion-item>
+    <!--<ion-item>
+      <ion-label position="stacked">Начало приёма</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY"
+                    [(ngModel)]="recipeData.startDate"
+                    name="startDate"
+                    placeholder="Дата"
+                    disabled></ion-datetime>
+    </ion-item> -->
+    <ion-item>
+      <ion-label position="stacked">Длина курса (дней)</ion-label>
+      <ion-input type="number" [(ngModel)]="receipt.days" name="length" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Куплено таблеток</ion-label>
+      <ion-input type="number" [(ngModel)]="receipt.stock" name="amount" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Количество в день</ion-label>
+      <ion-input type="number" [(ngModel)]="receipt.dose"
+                 disabled></ion-input>
+    </ion-item>
+    <ion-item *ngFor="let time of receipt.schedule.times; let i = index;">
+      <ion-label stacked>Время приёма {{i + 1}}</ion-label>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="time" name="times" placeholder="Время" text-center disabled></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <ion-button color="primary" expand="block">
+    Редактировать
+  </ion-button>
+
+</ion-content>
