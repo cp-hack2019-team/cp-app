@@ -7,9 +7,13 @@ const routes: Routes = [
   // {path: 'user', loadChildren: './user/user.module#UserPageModule'},
   {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
   { path: 'pills', loadChildren: './pills/pills.module#PillsPageModule' },
-  { path: 'watchers', loadChildren: './watchers/watchers.module#WatchersPageModule' },
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+  // { path: 'doctors', loadChildren: './doctor/doctor.module#DoctorModule' },
+  // { path: 'patients', loadChildren: './patient/patient.module#PatientModule' },
+  // { path: 'watchers', loadChildren: './watchers/watchers.module#WatchersPageModule' },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'medicine', loadChildren: './medicine/medicine.module#MedicinePageModule' },
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
 
 ];
 
