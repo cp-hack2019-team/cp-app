@@ -1,11 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>search-pills</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-title color="primary">
+			Поиск лекарств
+		</ion-title>
+		<ion-buttons slot="end">
+			<ion-back-button color="primary"></ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list inset>
-    <ion-item *ngFor="let pill of searchedPills" (click)="addReceipt(pill)"> <b> Лекарство: </b> {{pill.name}} </ion-item>
+    <ion-item *ngFor="let pill of searchedPills" (click)="addReceipt(pill)">{{pill.name}} </ion-item>
   </ion-list>
 </ion-content>

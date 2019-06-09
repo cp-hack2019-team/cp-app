@@ -39,6 +39,7 @@ export class RecipePage implements OnInit {
 	}
 
 	createRecipe() {
+		console.log(this.times);
 		const body = {
 			dose: this.recipeData.frequency,
 			medicineId: this.pillId,
@@ -52,6 +53,7 @@ export class RecipePage implements OnInit {
 	
 	changeFr(frequency) {
 		this.times = new Array(+frequency);
+		console.log(this.times);
 	}
 
 }

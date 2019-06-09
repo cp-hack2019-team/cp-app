@@ -30,7 +30,7 @@
 			<ion-input type="number" [(ngModel)]="recipeData.frequency" name="frequency" (ionInput)="changeFr($event.target.value)"></ion-input>
 		</ion-item>
 		<ion-item *ngFor="let x of times; let i = index;">
-			<ion-label stacked>Время приёма {{i+1}}</ion-label>
+			<ion-label stacked>Время приёма {{i+1}} {{x}}</ion-label>
 			<ion-datetime displayFormat="HH:mm" [(ngModel)]="x" name="times" placeholder="Время" text-center></ion-datetime>
 		</ion-item>
 	</ion-list>
