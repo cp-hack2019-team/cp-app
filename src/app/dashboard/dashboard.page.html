@@ -12,34 +12,43 @@
 <ion-content>
 	<ion-list inset="true" lines="none" style="box-shadow: 1px 1px 1px 1px grey;">
 		<ion-item>
-			<ion-label align="left">
-				7 дней
-			</ion-label>
 			<ion-label align="right">
 				Баланс 100р
 			</ion-label>
 		</ion-item>
 	</ion-list>
+	
+	<ion-list inset="true" lines="none" *ngFor="let pill of pills" style="box-shadow: 1px 1px 1px 1px grey;">
+	    <ion-list-header>
+			Сегодня, {{Date.now()}}
+        </ion-list-header>
+		<ion-row>
+			<ion-col>
+				<ion-item align="left">
+					<ion-note>
+						<h2> {{pill.schedule.times[0].substring(0, 5)}}</h2>
+					</ion-note>
+				</ion-item>
+			</ion-col>
+			<ion-col>
+				<ion-item align="right">
+					<ion-note color="primary">
+						<h3> {{pill.medicineName}}, {{pill.dose}} таблетка</h3>
+					</ion-note>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+	</ion-list>
 		
 	<ion-list inset="true" lines="none" *ngFor="let pill of pills" style="box-shadow: 1px 1px 1px 1px grey;">
-		<ion-item align="right" *ngIf="pill.daysCovered<=2" color="secondary">
+		<ion-item align="left" *ngIf="pill.daysCovered<=2">
 			<ion-note color="secondary">
-				<h1>Вам нужно купить {{pill.medicineName}}. Его осталось на {{pill.daysCovered}} день</h1>
+				<h3>Вам нужно купить {{pill.medicineName}}. Осталось на {{pill.daysCovered}} день</h3>
 			</ion-note>
-
 		</ion-item>
-	</ion-list>
-	
-	<ion-list inset="true" lines="none" *ngFor="let todo of todoData" style="box-shadow: 1px 1px 1px 1px grey;">
-	    <ion-list-header>
-			{{todo.title}}
-        </ion-list-header>
-		<ion-item align="right">
-			<ion-note slot="start" color="secondary">
-				<h2>{{todo.time}}</h2>
-			</ion-note>
-			<ion-note slot="end" color="secondary">
-				<h2>{{todo.description}}</h2>
+		<ion-item align="right" *ngIf="pill.daysCovered<=2">
+			<ion-note color="secondary">
+				<ion-button size="small">Купить здесь</ion-button>
 			</ion-note>
 		</ion-item>
 	</ion-list>

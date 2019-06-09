@@ -10,8 +10,7 @@ import {LoginService} from '../services/login.service';
 export class DashboardPage implements OnInit {
 	
 	pills = [{id: '12124'}, {id: '2222'}];
-	
-	todoData = [{title : 'Сегодня, 9 июня', description : 'Сегодня всё'}];
+
 
   constructor(private userService: UserService,
                 private loginService: LoginService) { }
