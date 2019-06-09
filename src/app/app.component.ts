@@ -4,7 +4,7 @@ import {MenuController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {LoginService} from './services/login.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {StorageService} from './services/storage.service';
 
 @Component({
@@ -38,7 +38,10 @@ export class AppComponent {
       if (isStorageAuthorized) {
         console.log('User already authorized');
         this.storageService.get('userId').then(userId => {
-          this.router.navigate(['/users/' + userId]);
+          if (this.router.url === '/' || this.router.url === '/login') {
+              // Redirect to default page
+              this.router.navigate(['/users/' + userId]);
+          }
           this.menuController.enable(true, 'main');
         });
       } else {
