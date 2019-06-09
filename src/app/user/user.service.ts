@@ -53,7 +53,7 @@ export class UserService extends RestService {
     }
 
     getUserReceiptList(id: number | string): Promise<ReceiptListElement[]> {
-        return this.getRequest(`${this.baseUrl}/${id}/medicines`, null).then( (res: ReceiptListElement[]) => {
+        return this.getRequest(`${this.baseUrl}/${id}/recipes`, null).then( (res: ReceiptListElement[]) => {
             return res;
         });
     }
