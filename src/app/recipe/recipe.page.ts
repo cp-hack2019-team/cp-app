@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { RestService } from '../services/rest.service';
+import {Pill} from '../interfaces/pill';
 
 @Component({
   selector: 'app-recipe',
@@ -8,40 +9,44 @@ import { RestService } from '../services/rest.service';
   styleUrls: ['./recipe.page.scss'],
 })
 export class RecipePage implements OnInit {
-	
+
 	times : any;
-	recipeData = {name : 'Фуфломицин', type : 'таблетки', description : 'Длинное хорошее лекарство', startDate : '', length : '', amount : '', frequency : '', to : ''};
+	recipeData = {
+		name : 'Фуфломицин',
+		type : 'таблетки',
+		description : 'Длинное хорошее лекарство',
+		startDate : '', length : '', amount : '', frequency : '', to : ''
+	};
 	sub : any;
 	data : any;
-	medicineId : any;
+	pillId : any;
+	requestedUserId: string;
 
 	constructor(private route: ActivatedRoute,
-			public rest: RestService) { 
+				private restService: RestService) {
 	}
 
 	ngOnInit() {
 		this.sub = this.route.queryParams.subscribe(params => {
-			this.medicineId = params['medicineId']; 
+			this.pillId = params['pillId'];
+			this.requestedUserId = params['requestedUserId'];
+
+			this.initPillData();
 		});
-		console.log(this.medicineId);
-		this.getMedicine(this.medicineId);
 	}
-  
+
+	private initPillData() {
+		this.restService.getRequest('medicines/' + this.pillId, null).then((data: Pill) => {
+			this.recipeData = data;
+		});
+	}
+
 	createRecipe() {
-		console.log(this.times);
+
 	}
 	
 	changeFr(frequency) {
 		this.times = new Array(+frequency);
-	}
-    
-	getMedicine(medicineId) {
-		//this.rest.getMedicine(medicineId).then((res) => {
-		//	this.data = res;
-		//	console.log(this.data);
-		//}, (err) => {
-		//	console.log(err);
-		//});
 	}
 
 }

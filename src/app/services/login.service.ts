@@ -31,7 +31,8 @@ export class LoginService {
                 username: login,
                 password: password
             };
-            this.restService.postRequest('auth/signin', body).then((data: {token: string, id: string}) => {
+            this.restService.postRequest('auth/signin', body, null)
+                .then((data: {token: string, id: string}) => {
                 this.isAuthorized = true;
                 this.$isAuthorized.next(this.isAuthorized);
                 this.storageService.set('token', data.token);

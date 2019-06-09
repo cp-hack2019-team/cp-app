@@ -19,7 +19,7 @@ export class ListPage<ListItemType> {
     }
 
     getItems(): Promise<Array<ListItemType>> {
-        return this.restService.getRequest(this.url).then((res: Array<ListItemType>) => {
+        return this.restService.getRequest(this.url, null).then((res: Array<ListItemType>) => {
            return res;
         });
     }

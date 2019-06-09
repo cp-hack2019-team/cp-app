@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {UserService} from '../user/user.service';
 import {LoginService} from '../services/login.service';
-import {Doctor} from '../interfaces/doctor';
-import {ReceiptListElement} from '../interfaces/receipt/receipt-list-element';
 
 @Component({
     selector: 'app-pills',
@@ -36,6 +34,15 @@ export class PillsPage implements OnInit {
     toRecipe(pill) {
         // TODO: uncomment navigating to receipt info
         this.router.navigate(['/users/' + this.loginService.getUserId() + '/receipt/']);
+    }
+
+    addRecipe() {
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                requestedUserId: this.loginService.getUserId()
+            }
+        };
+        this.router.navigate(['/search-pills'], navigationExtras);
     }
 
 }

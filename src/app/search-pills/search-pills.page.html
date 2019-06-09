@@ -5,5 +5,7 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list inset>
+    <ion-item *ngFor="let pill of searchedPills" (click)="addReceipt(pill)"> <b> Лекарство: </b> {{pill.name}} </ion-item>
+  </ion-list>
 </ion-content>

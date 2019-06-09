@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {RestService} from '../services/rest.service';
+import {Pill} from '../interfaces/pill';
 
 @Component({
   selector: 'app-search-pills',
@@ -10,22 +11,34 @@ import {RestService} from '../services/rest.service';
 export class SearchPillsPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private restService: RestService) { }
+              private restService: RestService,
+              private router: Router) { }
 
   requestedUserId: string;
-
+  searchedPills: Pill[];
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.requestedUserId = params['requestedUserId'];
     });
 
-    const body = {
+    const params = {
       prefix: ''
     };
-    this.restService.postRequest('medicines', body).then(data => {
-
+    this.restService.getRequest('medicines', params).then((data: {content: Pill[]}) => {
+      this.searchedPills = data.content;
     });
+  }
+
+  addReceipt(pill: Pill) {
+    console.log('Adding receipe');
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        requestedUserId: this.requestedUserId,
+        pillId: pill.id
+      },
+    };
+    this.router.navigate(['/recipe'], navigationExtras);
   }
 
 }
