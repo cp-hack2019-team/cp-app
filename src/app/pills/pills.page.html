@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Мои лекарства</ion-title>
-	<ion-buttons slot="end">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
+	<ion-toolbar>
+  		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Мои лекарства</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<ion-list inset no-lines>
-		<ion-item *ngFor="let pill of pills" (click)="toRecipe(pill)"> <b> Лекарство: </b> {{pill.id}} </ion-item>
+		<ion-item *ngFor="let pill of pills" (click)="toRecipe(pill)">{{pill.medicineName}} </ion-item>
 	</ion-list>
 	
 	<ion-row>

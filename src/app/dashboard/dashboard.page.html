@@ -1,9 +1,35 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+  		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Сегодня</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+	<ion-list inset="true" lines="none" style="box-shadow: 1px 1px 1px 1px grey;">
+		<ion-item>
+			<ion-label align="left">
+				Без перерыва
+			</ion-label>
+			<ion-label align="right">
+				Баланс
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list inset="true" lines="none" *ngFor="let todo of todoData" style="box-shadow: 1px 1px 1px 1px grey;">
+	    <ion-list-header>
+			{{todo.title}}
+        </ion-list-header>
+		<ion-item align="right">
+			<ion-label align="left">
+				<h2>{{todo.time}}</h2>
+			</ion-label>
+			<ion-label align="right">
+				<h2>{{todo.description}}</h2>
+			</ion-label>
+		</ion-item>
+	</ion-list>
 </ion-content>
