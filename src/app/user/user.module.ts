@@ -7,6 +7,8 @@ import {IonicModule} from '@ionic/angular';
 import {PatientModule} from '../patient/patient.module';
 import {DoctorModule} from '../doctor/doctor.module';
 import {PillsPageModule} from '../pills/pills.module';
+import {RecipeViewPage} from '../recipe-view/recipe-view.page';
+import {RecipeViewPageModule} from '../recipe-view/recipe-view.module';
 
 @NgModule({
     declarations: [
@@ -19,6 +21,7 @@ import {PillsPageModule} from '../pills/pills.module';
         // UserRoutingModule,
         PatientModule,
         DoctorModule,
+        RecipeViewPageModule
         // PillsPageModule
     ]
 })
