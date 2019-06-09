@@ -9,7 +9,7 @@ import {Doctor} from '../../interfaces/doctor';
 })
 export class DoctorListComponent implements OnInit {
 
-    patients: Doctor[];
+    doctors: Doctor[];
 
     constructor(
         private route: ActivatedRoute,
@@ -19,7 +19,7 @@ export class DoctorListComponent implements OnInit {
     ngOnInit() {
         this.route.data
             .subscribe((data: { doctors: Doctor[] }) => {
-                this.patients = data.doctors;
+                this.doctors = data.doctors;
             });
     }
 

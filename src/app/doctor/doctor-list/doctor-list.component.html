@@ -10,15 +10,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let user of users" href="/users/{{user.id}}">
+  <ion-list *ngIf="doctors.length">
+    <ion-item *ngFor="let doctor of doctors" href="/users/{{doctor.id}}">
       <!--<ion-icon [name]="item.icon" slot="start"></ion-icon>-->
-      {{user.login}}
+      {{doctor.login}}
       <div class="item-note" slot="end">
-        {{user.firstName}} / {{user.lastName}}
+        {{doctor.firstName}} / {{doctor.lastName}}
       </div>
     </ion-item>
   </ion-list>
+
+  <ion-card *ngIf="!doctors.length" style="--background: white; --color: black">
+    <ion-card-content>
+      Нет пациентов
+    </ion-card-content>
+  </ion-card>
   <!--
     <div *ngIf="selectedItem" padding>
       You navigated here from <b>{{selectedItem.title }}</b>

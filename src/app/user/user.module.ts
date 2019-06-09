@@ -16,7 +16,7 @@ import {PillsPageModule} from '../pills/pills.module';
     imports: [
         CommonModule,
         IonicModule,
-        UserRoutingModule,
+        // UserRoutingModule,
         PatientModule,
         DoctorModule,
         // PillsPageModule

@@ -21,7 +21,7 @@ const userRoutes: Routes = [
         // canDeactivate: [CanDeactivateGuard],
         resolve: {
             user: UserDetailResolverService
-        },
+        }
     },
     {
         path: 'users/:id/patients',
@@ -34,7 +34,7 @@ const userRoutes: Routes = [
         path: 'users/:id/doctors',
         component: DoctorListComponent,
         resolve: {
-            patients: DoctorListResolverService
+            doctors: DoctorListResolverService
         }
     }
     /*{

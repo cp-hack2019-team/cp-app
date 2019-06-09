@@ -40,7 +40,7 @@ export class AppComponent {
         this.storageService.get('userId').then(userId => {
           if (this.router.url === '/' || this.router.url === '/login') {
               // Redirect to default page
-              this.router.navigate(['/users/' + userId]);
+              // this.router.navigate(['/users/' + userId]);
           }
           this.menuController.enable(true, 'main');
         });
