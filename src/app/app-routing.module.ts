@@ -12,13 +12,13 @@ import {RecipeViewResolverService} from './recipe-view/recipe-view-resolver.serv
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  // {path: 'user', loadChildren: './user/user.module#UserPageModule'},
-  {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
-  { path: 'pills', loadChildren: './pills/pills.module#PillsPageModule' },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
-  { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
-  { path: 'search-pills', loadChildren: './search-pills/search-pills.module#SearchPillsPageModule' },
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+      // {path: 'user', loadChildren: './user/user.module#UserPageModule'},
+    {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
+    { path: 'pills', loadChildren: './pills/pills.module#PillsPageModule' },
+    { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+    { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
+    { path: 'search-pills', loadChildren: './search-pills/search-pills.module#SearchPillsPageModule' },
     {
         path: 'users',
         component: UserListComponent,
