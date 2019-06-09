@@ -10,16 +10,37 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="doctors.length">
-    <!--<ion-item *ngFor="let doctor of doctors" href="/users/{{doctor.id}}">-->
-      <ion-item *ngFor="let doctor of doctors">
-      <!--<ion-icon [name]="item.icon" slot="start"></ion-icon>-->
-      {{doctor.login}}
-      <div class="item-note" slot="end">
-        {{doctor.firstName}} / {{doctor.lastName}}
-      </div>
-    </ion-item>
-  </ion-list>
+    <ion-card style="--background: white; --color: black" *ngFor="let doctor of doctors">
+        <ion-card-content *ngIf="doctors.length">
+            <ion-item>
+                <!--<ion-icon [name]="item.icon" slot="start"></ion-icon>-->
+                <ion-label>
+                    <h1>{{doctor.login}}</h1>
+                    <ion-text color="primary">
+                        <h3>{{doctor.firstName}} / {{doctor.lastName}}</h3>
+                    </ion-text>
+                    <!--<p>Paragraph line 1</p>-->
+                    <!--<ion-text color="secondary">-->
+                    <!--<p>Paragraph line 2 secondary</p>-->
+                    <!--</ion-text>-->
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+
+        <!--<ion-card-content *ngIf="!doctors.length">-->
+            <!--Нет наблюдателей-->
+        <!--</ion-card-content>-->
+    </ion-card>
+  <!--<ion-list *ngIf="doctors.length">-->
+    <!--&lt;!&ndash;<ion-item *ngFor="let doctor of doctors" href="/users/{{doctor.id}}">&ndash;&gt;-->
+      <!--<ion-item *ngFor="let doctor of doctors">-->
+      <!--&lt;!&ndash;<ion-icon [name]="item.icon" slot="start"></ion-icon>&ndash;&gt;-->
+      <!--{{doctor.login}}-->
+      <!--<div class="item-note">-->
+        <!--{{doctor.firstName}} / {{doctor.lastName}}-->
+      <!--</div>-->
+    <!--</ion-item>-->
+  <!--</ion-list>-->
 
   <ion-card *ngIf="!doctors.length" style="--background: white; --color: black">
     <ion-card-content>
