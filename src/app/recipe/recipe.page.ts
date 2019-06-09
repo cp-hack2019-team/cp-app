@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { RestService } from '../services/rest.service';
 import {Pill} from '../interfaces/pill';
+import {Recipe} from '../interfaces/receipt/recipe';
 
 @Component({
   selector: 'app-recipe',
@@ -10,16 +11,12 @@ import {Pill} from '../interfaces/pill';
 })
 export class RecipePage implements OnInit {
 
-	times : any;
-	recipeData = {
-		name : 'Фуфломицин',
-		type : 'таблетки',
-		description : 'Длинное хорошее лекарство',
-		startDate : '', length : '', amount : '', frequency : '', to : ''
-	};
-	sub : any;
-	data : any;
-	pillId : any;
+	times: any;
+	pillData: Pill;
+	recipeData: Recipe = { startDate : '', length : '', amount : '', frequency : '', to : ''};
+	sub: any;
+	data: any;
+	pillId: any;
 	requestedUserId: string;
 
 	constructor(private route: ActivatedRoute,
@@ -37,12 +34,20 @@ export class RecipePage implements OnInit {
 
 	private initPillData() {
 		this.restService.getRequest('medicines/' + this.pillId, null).then((data: Pill) => {
-			this.recipeData = data;
+			this.pillData = data;
 		});
 	}
 
 	createRecipe() {
-
+		const body = {
+			dose: this.recipeData.frequency,
+			medicineId: this.pillId,
+			stock: this.recipeData.amount,
+			schedule: {
+				times: this.times
+			}
+		};
+		this.restService.postRequest('users/' + this.requestedUserId + '/recipe', body, null);
 	}
 	
 	changeFr(frequency) {
