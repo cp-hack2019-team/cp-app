@@ -18,7 +18,6 @@ export class DashboardPage implements OnInit {
     ngOnInit() {
         this.userService.getUserReceiptList(this.loginService.getUserId()).then(pills => this.pills = pills);
 		this.today = '9.06';
-		console.log(today);
 		console.log(this.pills);
     }
 
