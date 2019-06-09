@@ -15,10 +15,10 @@ export class LoginService {
 
     constructor(private storageService: StorageService,
                 private restService: RestService) {
-        console.log('Here constructor' + this.isAuthorized);
         this.isStorageAuthorized().then(res => {
             this.isAuthorized = res;
             this.storageService.get('userId').then(storedUserId => {
+                console.log('User id updated: ' + storedUserId);
                 this.userId = storedUserId;
                 this.$isAuthorized.next(this.isAuthorized);
             });

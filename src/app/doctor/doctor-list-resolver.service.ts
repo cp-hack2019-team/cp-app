@@ -10,10 +10,10 @@ import {Doctor} from '../interfaces/doctor';
 })
 export class DoctorListResolverService implements Resolve<void | Doctor[]> {
 
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private userService: UserService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<void | Doctor[]> {
-        const id = route.paramMap.get('id');
+        const id = route.parent.paramMap.get('id');
 
         return this.userService.getUserDoctors(id)
             .then(res => {
