@@ -12,8 +12,7 @@ const routes: Routes = [
   // { path: 'patients', loadChildren: './patient/patient.module#PatientModule' },
   // { path: 'watchers', loadChildren: './watchers/watchers.module#WatchersPageModule' },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
-  { path: 'medicine', loadChildren: './medicine/medicine.module#MedicinePageModule' },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+  { path: 'search-pills', loadChildren: './search-pills/search-pills.module#SearchPillsPageModule' }
 
 ];
 
