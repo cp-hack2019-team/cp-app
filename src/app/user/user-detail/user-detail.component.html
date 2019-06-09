@@ -23,12 +23,12 @@
 	
     <ion-list inset="true" lines="none" style="box-shadow: 1px 1px 1px 1px grey;">
         <ion-list-header>
-          Параметры
+          <h5>Параметры</h5>
         </ion-list-header>
 		<ion-item>
           <ion-label>
             <h2>Возраст: {{user?.age || 'N/A'}}</h2>
-			<h2>Вес: {{user?.weight || 'N/A'}}</h2>
+			<h2>Вес: {{user?.waight || 'N/A'}}</h2>
 			<h2>Рост: {{user?.height || 'N/A'}}</h2>
           </ion-label>
         </ion-item>
@@ -36,13 +36,39 @@
 	
 	<ion-list inset="true" lines="none" style="box-shadow: 1px 1px 1px 1px grey;">
         <ion-list-header>
-          Лечение
+			<h5>Статистика</h5>
         </ion-list-header>
 		<ion-item>
-          <ion-label *ngFor="let pill of user.pills">
-            <h2>{{pill}}</h2>
-          </ion-label>
-        </ion-item>
+			<ion-label slot="start">
+				<ion-text>
+					Без пропусков:
+				</ion-text>
+				<ion-text color="primary">
+					3 дня
+				</ion-text>
+			</ion-label>
+			<ion-label slot="end">
+				<ion-text>
+					Ваша скидка:
+				</ion-text>
+				<ion-text color="primary">
+					5%
+				</ion-text>
+			</ion-label>
+		</ion-item>
 	</ion-list>
+
+	<!--<ion-card style="&#45;&#45;background: white; &#45;&#45;color: black">-->
+		<!--<ion-card-content>-->
+			<!--<ion-item>-->
+				<!--<ion-label>-->
+					<!--<h2>Статистика</h2>-->
+					<!--<ion-text color="primary">-->
+						<!--<h3>Без пропусков: 3 дня</h3>-->
+					<!--</ion-text>-->
+				<!--</ion-label>-->
+			<!--</ion-item>-->
+		<!--</ion-card-content>-->
+	<!--</ion-card>-->
 
 </ion-content>
