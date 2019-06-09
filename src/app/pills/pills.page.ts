@@ -35,7 +35,7 @@ export class PillsPage implements OnInit {
 
     toRecipe(pill) {
         // TODO: uncomment navigating to receipt info
-        // this.router.navigate(['/users/' + this.loginService.getUserId() + '/receipt/']);
+        this.router.navigate(['/users/' + this.loginService.getUserId() + '/receipt/']);
     }
 
 }
