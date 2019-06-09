@@ -11,7 +11,7 @@ export class PatientListResolverService implements Resolve<void | Patient[]> {
     constructor(private userService: UserService, private router: Router) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<void | Patient[]> {
-        const id = route.parent.paramMap.get('id');
+        const id = route.paramMap.get('id');
 
         return this.userService.getUserPatients(id)
             .then(res => {

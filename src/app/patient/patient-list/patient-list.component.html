@@ -1,3 +1,27 @@
-<p>
-  patient-list works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Список пациентов
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let user of users" href="/users/{{user.id}}">
+      <!--<ion-icon [name]="item.icon" slot="start"></ion-icon>-->
+      {{user.login}}
+      <div class="item-note" slot="end">
+        {{user.firstName}} / {{user.lastName}}
+      </div>
+    </ion-item>
+  </ion-list>
+  <!--
+    <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title }}</b>
+    </div>
+  -->
+</ion-content>

@@ -13,7 +13,7 @@ export class DoctorListResolverService implements Resolve<void | Doctor[]> {
     constructor(private userService: UserService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<void | Doctor[]> {
-        const id = route.parent.paramMap.get('id');
+        const id = route.paramMap.get('id');
 
         return this.userService.getUserDoctors(id)
             .then(res => {

@@ -16,37 +16,35 @@ const userRoutes: Routes = [
         component: UserListComponent,
     },
     {
-                path: 'users/:id',
-                component: UserDetailComponent,
-                // canDeactivate: [CanDeactivateGuard],
-                resolve: {
-                    user: UserDetailResolverService
-                },
-                children: [
-                    {
-                        path: 'patients',
-                        component: PatientListComponent,
-                        resolve: {
-                            patients: PatientListResolverService
-                        }
-                    },
-                    {
-                        path: 'doctors',
-                        component: DoctorListComponent,
-                        resolve: {
-                            patients: DoctorListResolverService
-                        }
-                    }
-                    /*{
-                        path: 'pills',
-                        component: PillsPage,
-                        resolve: {
-                            patients: PillsResolverService
-                        }
-                    }*/
-                ]
+        path: 'users/:id',
+        component: UserDetailComponent,
+        // canDeactivate: [CanDeactivateGuard],
+        resolve: {
+            user: UserDetailResolverService
+        },
+    },
+    {
+        path: 'users/:id/patients',
+        component: PatientListComponent,
+        resolve: {
+            patients: PatientListResolverService
+        }
+    },
+    {
+        path: 'users/:id/doctors',
+        component: DoctorListComponent,
+        resolve: {
+            patients: DoctorListResolverService
+        }
     }
-];
+    /*{
+        path: 'pills',
+        component: PillsPage,
+        resolve: {
+           patients: PillsResolverService
+        }
+    }*/
+]
 
 @NgModule({
     declarations: [],
