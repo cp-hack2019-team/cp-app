@@ -50,7 +50,8 @@ export class RecipePage implements OnInit {
 			schedule: {
 				times: this.times
 			},
-			createdTime: null
+			createdTime: null,
+			days: length
 		};
 		this.restService.postRequest('users/' + this.requestedUserId + '/recipe', body, null).then(
 			success => {

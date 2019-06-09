@@ -13,11 +13,20 @@
 	<ion-list inset="true" lines="none" style="box-shadow: 1px 1px 1px 1px grey;">
 		<ion-item>
 			<ion-label align="left">
-				Без перерыва
+				7 дней
 			</ion-label>
 			<ion-label align="right">
-				Баланс
+				Баланс 100р
 			</ion-label>
+		</ion-item>
+	</ion-list>
+		
+	<ion-list inset="true" lines="none" *ngFor="let pill of pills" style="box-shadow: 1px 1px 1px 1px grey;">
+		<ion-item align="right" *ngIf="pill.daysCovered<=2" color="secondary">
+			<ion-note color="secondary">
+				<h1>Вам нужно купить {{pill.medicineName}}. Его осталось на {{pill.daysCovered}} день</h1>
+			</ion-note>
+
 		</ion-item>
 	</ion-list>
 	
@@ -26,12 +35,13 @@
 			{{todo.title}}
         </ion-list-header>
 		<ion-item align="right">
-			<ion-label align="left">
+			<ion-note slot="start" color="secondary">
 				<h2>{{todo.time}}</h2>
-			</ion-label>
-			<ion-label align="right">
+			</ion-note>
+			<ion-note slot="end" color="secondary">
 				<h2>{{todo.description}}</h2>
-			</ion-label>
+			</ion-note>
 		</ion-item>
 	</ion-list>
+
 </ion-content>

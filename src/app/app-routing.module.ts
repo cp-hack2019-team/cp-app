@@ -7,6 +7,8 @@ import {DoctorListComponent} from './doctor/doctor-list/doctor-list.component';
 import {UserListComponent} from './user/user-list/user-list.component';
 import {PatientListResolverService} from './patient/patient-list-resolver.service';
 import {UserDetailResolverService} from './user/user-detail-resolver.service';
+import {RecipeViewPage} from './recipe-view/recipe-view.page';
+import {RecipeViewResolverService} from './recipe-view/recipe-view-resolver.service';
 
 
 const routes: Routes = [
@@ -15,9 +17,6 @@ const routes: Routes = [
   {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
   { path: 'pills', loadChildren: './pills/pills.module#PillsPageModule' },
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
-  // { path: 'doctors', loadChildren: './doctor/doctor.module#DoctorModule' },
-  // { path: 'patients', loadChildren: './patient/patient.module#PatientModule' },
-  // { path: 'watchers', loadChildren: './watchers/watchers.module#WatchersPageModule' },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'search-pills', loadChildren: './search-pills/search-pills.module#SearchPillsPageModule' },
     {
@@ -44,6 +43,13 @@ const routes: Routes = [
         component: DoctorListComponent,
         resolve: {
             doctors: DoctorListResolverService
+        }
+    },
+    {
+        path: 'users/:id/recipes/:rid',
+        component: RecipeViewPage,
+        resolve: {
+            recipe: RecipeViewResolverService
         }
     }
     /*{

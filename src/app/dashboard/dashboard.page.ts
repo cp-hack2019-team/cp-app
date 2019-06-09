@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../user/user.service';
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 	
-	todoData = [{title : 'Сегодня, 9 июня', description : 'На сегодня всё'},{title : 'Завтра, 10 июня', description : 'Поход к врачу', time : '15:00'}];
+	pills = [{id: '12124'}, {id: '2222'}];
+	
+	todoData = [{title : 'Сегодня, 9 июня', description : 'Сегодня всё'}];
 
-  constructor() { }
+  constructor(private userService: UserService,
+                private loginService: LoginService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.userService.getUserReceiptList(this.loginService.getUserId()).then(pills => this.pills = pills);
+		console.log(this.pills);
+    }
 
 }

@@ -7,8 +7,6 @@ import {PatientListComponent} from '../patient/patient-list/patient-list.compone
 import {DoctorListComponent} from '../doctor/doctor-list/doctor-list.component';
 import {PatientListResolverService} from '../patient/patient-list-resolver.service';
 import {DoctorListResolverService} from '../doctor/doctor-list-resolver.service';
-import {PillsPage} from '../pills/pills.page';
-import {PillsResolverService} from '../pills/pills-resolver.service';
 
 const userRoutes: Routes = [
     {
@@ -44,7 +42,7 @@ const userRoutes: Routes = [
            patients: PillsResolverService
         }
     }*/
-]
+];
 
 @NgModule({
     declarations: [],
