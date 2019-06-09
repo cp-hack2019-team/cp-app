@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {LoginService} from './services/login.service';
 import {Router} from '@angular/router';
+import {StorageService} from './services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -31,20 +32,27 @@ export class AppComponent {
     private loginService: LoginService,
     private menuController: MenuController,
     private router: Router,
+    private storageService: StorageService
   ) {
     this.initializeApp();
-    console.log('App');
     menuController.enable(loginService.isAuthorized, 'main');
 
     // Handle menu state on login
     loginService.$isAuthorized.subscribe(isAuthorized => {
       console.log('isAuthorized: ' + isAuthorized + ' userId: ' + this.loginService.getUserId());
       menuController.enable(isAuthorized, 'main');
+    });
 
-      if (this.loginService.isAuthorized && this.loginService.getUserId() != null) {
+    // Check login state on start
+    this.loginService.isStorageAuthorized().then( isStorageAuthorized => {
+      if (isStorageAuthorized) {
         console.log('User already authorized');
-        this.router.navigate(['/users/' + this.loginService.getUserId()]);
-        this.menuController.enable(true, 'main');
+        this.storageService.get('userId').then(userId => {
+          this.router.navigate(['/users/' + userId]);
+          this.menuController.enable(true, 'main');
+        });
+      } else {
+        this.logout();
       }
     });
 

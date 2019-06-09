@@ -61,7 +61,7 @@ export class LoginService {
         return this.token;
     }
 
-    private async isStorageAuthorized(): Promise<boolean> {
+    async isStorageAuthorized(): Promise<boolean> {
         return await this.storageService.get('token') != null && this.storageService.get('userId') != null;
     }
 
