@@ -11,7 +11,8 @@
 
 <ion-content>
   <ion-list *ngIf="doctors.length">
-    <ion-item *ngFor="let doctor of doctors" href="/users/{{doctor.id}}">
+    <!--<ion-item *ngFor="let doctor of doctors" href="/users/{{doctor.id}}">-->
+      <ion-item *ngFor="let doctor of doctors">
       <!--<ion-icon [name]="item.icon" slot="start"></ion-icon>-->
       {{doctor.login}}
       <div class="item-note" slot="end">

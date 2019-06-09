@@ -11,7 +11,8 @@
 
 <ion-content>
   <ion-list *ngIf="patients.length">
-    <ion-item *ngFor="let patient of patients" href="/users/{{patient.id}}">
+    <!--<ion-item *ngFor="let patient of patients" href="/users/{{patient.id}}">-->
+      <ion-item *ngFor="let patient of patients">
       <!--<ion-icon [name]="item.icon" slot="start"></ion-icon>-->
       {{patient.login}}
       <div class="item-note" slot="end">
@@ -22,7 +23,7 @@
 
   <ion-card *ngIf="!patients.length" style="--background: white; --color: black">
     <ion-card-content>
-      Нет пациентов
+      Нет подписок
     </ion-card-content>
   </ion-card>
   <!--
